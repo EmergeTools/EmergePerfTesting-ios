@@ -1,3 +1,5 @@
-# EMGPerfTesting
+# EmergePerfTesting-iOS
 
-For documentation and integration steps, see https://docs.emergetools.com/docs/ios-performance-testing
+- For general documentation, see https://docs.emergetools.com/docs/ios-performance-testing
+- For steps specifically to integrate the EMGPerfTesting framework, see https://github.com/EmergeTools/EmergePerfTesting-ios/INTEGRATION.md
+- For an example of how it works, see Example/Example.xcworkspace and in particular the ExampleUITests test bundle target
