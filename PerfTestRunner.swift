@@ -14,12 +14,18 @@ import XCTest
                 let test = objcClass.init() as! EMGPerfTest
                 print("Testing perf test class \(String(describing: aClass))")
                 print("Running initial setup for \(String(describing: aClass))")
-                test.runInitialSetup(withApp: XCUIApplication())
+                let setupApp = XCUIApplication()
+                setupApp.launch()
+                test.runInitialSetup(withApp: setupApp)
                 print("Running two iterations for \(String(describing: aClass))")
                 print("Iteration 1")
-                test.runIteration(withApp: XCUIApplication())
+                let app1 = XCUIApplication()
+                app1.launch()
+                test.runIteration(withApp: app1)
                 print("Iteration 2")
-                test.runIteration(withApp: XCUIApplication())
+                let app2 = XCUIApplication()
+                app2.launch()
+                test.runIteration(withApp: app2)
             }
         }
     }
