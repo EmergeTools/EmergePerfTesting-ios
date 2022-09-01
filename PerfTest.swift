@@ -16,18 +16,8 @@ import XCTest
     func runIteration(withApp app: XCUIElement)
 
     // Environment variables to set when launching the app for setup (optional)
-    func launchEnvironmentForSetup() -> [String : String]
+    @objc optional func launchEnvironmentForSetup() -> [String : String]
 
     // Environment variables to set when launching the app for an iteration (optional)
-    func launchEnvironmentForIterations() -> [String : String]
-}
-
-extension EMGPerfTest {
-    func launchEnvironmentForSetup() -> [String : String] {
-        return [:]
-    }
-
-    func launchEnvironmentForIterations() -> [String : String] {
-        return [:]
-    }
+    @objc optional func launchEnvironmentForIterations() -> [String : String]
 }
