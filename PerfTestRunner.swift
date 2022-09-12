@@ -14,19 +14,40 @@ import XCTest
                 let test = objcClass.init() as! EMGPerfTest
                 print("Testing perf test class \(String(describing: aClass))")
                 print("Running initial setup for \(String(describing: aClass))")
-                let setupApp = XCUIApplication()
+                let setupApp = prepareApp(for: test, launchType: .setup)
                 setupApp.launch()
                 test.runInitialSetup(withApp: setupApp)
                 print("Running two iterations for \(String(describing: aClass))")
                 print("Iteration 1")
-                let app1 = XCUIApplication()
+                let app1 = prepareApp(for: test, launchType: .iteration)
                 app1.launch()
                 test.runIteration(withApp: app1)
                 print("Iteration 2")
-                let app2 = XCUIApplication()
+                let app2 = prepareApp(for: test, launchType: .iteration)
                 app2.launch()
                 test.runIteration(withApp: app2)
             }
         }
+    }
+
+    private enum LaunchType {
+        case setup
+        case iteration
+    }
+
+    private static func prepareApp(for test: EMGPerfTest, launchType: LaunchType) -> XCUIApplication {
+        let app = XCUIApplication()
+        let env: [String: String]
+        switch launchType {
+        case .setup:
+            env = test.launchEnvironmentForSetup?() ?? [:]
+        case .iteration:
+            env = test.launchEnvironmentForIterations?() ?? [:]
+        }
+        app.launchEnvironment.merge(env) { current, new in
+            return new
+        }
+
+        return app
     }
 }
