@@ -15,17 +15,19 @@ import XCTest
                 print("Testing perf test class \(String(describing: aClass))")
                 print("Running initial setup for \(String(describing: aClass))")
                 let setupApp = XCUIApplication()
+                setupApp.launchEnvironment = test.launchEnvironmentForSetup?() ?? [:]
+                setupApp.launchArguments = test.launchArgumentsForSetup?() ?? []
                 setupApp.launch()
                 test.runInitialSetup(withApp: setupApp)
                 print("Running two iterations for \(String(describing: aClass))")
-                print("Iteration 1")
-                let app1 = XCUIApplication()
-                app1.launch()
-                test.runIteration(withApp: app1)
-                print("Iteration 2")
-                let app2 = XCUIApplication()
-                app2.launch()
-                test.runIteration(withApp: app2)
+                for i in 0..<2 {
+                    print("Iteration \(i + 1)")
+                    let app = XCUIApplication()
+                    app.launchEnvironment = test.launchEnvironmentForIterations?() ?? [:]
+                    app.launchArguments = test.launchArgumentsForIterations?() ?? []
+                    app.launch()
+                    test.runIteration(withApp: app)
+                }
             }
         }
     }

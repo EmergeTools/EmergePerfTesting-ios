@@ -18,6 +18,12 @@ import XCTest
     // Environment variables to set when launching the app for setup (optional)
     @objc optional func launchEnvironmentForSetup() -> [String : String]
 
-    // Environment variables to set when launching the app for an iteration (optional)
+    // Environment variables to set when launching the app for each iteration (optional)
     @objc optional func launchEnvironmentForIterations() -> [String : String]
+
+    // Launch arguments to use when launching the app for setup (optional)
+    @objc optional func launchArgumentsForSetup() -> [String]
+
+    // Launch arguments to use when launching the app for each iteration (optional)
+    @objc optional func launchArgumentsForIterations() -> [String]
 }
