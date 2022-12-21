@@ -31,8 +31,20 @@ import XCTest
     }
     
     private static func makeApplication(forTest test: EMGPerfTest) -> XCUIApplication {
+        let emergeLaunchEnvironment = [
+            "DYLD_INSERT_LIBRARIES" : "PerfTesting", // TODO
+            "EMERGE_CLEAR_DISK" : "1",
+//            "EMERGE_CFBUNDLENAME": runnerContext.bundleName,
+            "EMERGE_CLASS_NAME" : String(describing: test.self),
+            "EMERGE_IS_PERFORMANCE_TESTING" : "1",
+            "EMG_RECORD_NETWORK" : "1",
+        ]
+        let testLaunchEnvironment = test.launchEnvironmentForSetup?() ?? [:]
+        // For now we do not support overriding Emerge defined keys
+        let mergedLaunchEnvironments = emergeLaunchEnvironment.merging(testLaunchEnvironment) { (emergeValue, _) in emergeValue }
+        
         let setupApp = XCUIApplication()
-        setupApp.launchEnvironment = test.launchEnvironmentForSetup?() ?? [:]
+        setupApp.launchEnvironment = mergedLaunchEnvironments
         setupApp.launchArguments = test.launchArgumentsForSetup?() ?? []
         setupApp.launch()
         return setupApp
