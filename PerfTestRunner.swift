@@ -14,13 +14,13 @@ import XCTest
             if let perfTestClass = aClass as? EMGPerfTest.Type {
                 let objcClass = perfTestClass as! NSObject.Type
                 let test = objcClass.init() as! EMGPerfTest
-                print("Testing perf test class \(String(describing: aClass))")
-                print("Running initial setup for \(String(describing: aClass))")
+                print("Testing perf test class \(String(describing: perfTestClass))")
+                print("Running initial setup for \(String(describing: perfTestClass))")
                 
                 let setupApp = makeApplication(forTest: test)
                 test.runInitialSetup(withApp: setupApp)
               
-                print("Running two iterations for \(String(describing: aClass))")
+                print("Running two iterations for \(String(describing: perfTestClass))")
                 for i in 0..<2 {
                     print("Iteration \(i + 1)")
                     let app = makeApplication(forTest: test)
