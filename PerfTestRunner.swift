@@ -14,38 +14,52 @@ import XCTest
             if let perfTestClass = aClass as? EMGPerfTest.Type {
                 let objcClass = perfTestClass as! NSObject.Type
                 let test = objcClass.init() as! EMGPerfTest
-                print("Testing perf test class \(String(describing: perfTestClass))")
-                print("Running initial setup for \(String(describing: perfTestClass))")
+                print("🚀 EMERGE: Testing perf test class \(String(describing: perfTestClass))")
+                print("🚀 EMERGE: Running initial setup for \(String(describing: perfTestClass))")
                 
-                let setupApp = makeApplication(forTest: test)
+                let setupApp = makeStartupApplication(forTest: test)
                 test.runInitialSetup(withApp: setupApp)
               
-                print("Running two iterations for \(String(describing: perfTestClass))")
+                print("🚀 EMERGE: Running two iterations for \(String(describing: perfTestClass))")
                 for i in 0..<2 {
-                    print("Iteration \(i + 1)")
-                    let app = makeApplication(forTest: test)
+                    print("🚀 EMERGE: Iteration \(i + 1)")
+                    let app = makeRunIterationApplication(forTest: test, iteration: i)
                     test.runIteration(withApp: app)
                 }
             }
         }
     }
     
-    private static func makeApplication(forTest test: EMGPerfTest) -> XCUIApplication {
+    private static func makeStartupApplication(forTest test: EMGPerfTest) -> XCUIApplication {
         let emergeLaunchEnvironment = [
-            "DYLD_INSERT_LIBRARIES" : "PerfTesting", // TODO
-            "EMERGE_CLEAR_DISK" : "1",
-//            "EMERGE_CFBUNDLENAME": runnerContext.bundleName,
             "EMERGE_CLASS_NAME" : String(describing: test.self),
             "EMERGE_IS_PERFORMANCE_TESTING" : "1",
             "EMG_RECORD_NETWORK" : "1",
         ]
         let testLaunchEnvironment = test.launchEnvironmentForSetup?() ?? [:]
-        // For now we do not support overriding Emerge defined keys
         let mergedLaunchEnvironments = emergeLaunchEnvironment.merging(testLaunchEnvironment) { (emergeValue, _) in emergeValue }
         
+        let launchArguments = test.launchArgumentsForSetup?() ?? []
+        return makeApplication(forTest: test, environment: mergedLaunchEnvironments, launchArguments: launchArguments)
+    }
+    
+    private static func makeRunIterationApplication(forTest test: EMGPerfTest, iteration: Int) -> XCUIApplication {
+        let emergeLaunchEnvironment = [
+            "EMERGE_CLASS_NAME" : String(describing: test.self),
+            "EMERGE_IS_PERFORMANCE_TESTING" : "1",
+            "EMG_RECORD_NETWORK" : "1",
+        ]
+        let testLaunchEnvironment = test.launchEnvironmentForIterations?() ?? [:]
+        let mergedLaunchEnvironments = emergeLaunchEnvironment.merging(testLaunchEnvironment) { (emergeValue, _) in emergeValue }
+        
+        let launchArguments = test.launchArgumentsForIterations?() ?? []
+        return makeApplication(forTest: test, environment: mergedLaunchEnvironments, launchArguments: launchArguments)
+    }
+    
+    private static func makeApplication(forTest test: EMGPerfTest, environment: [String : String], launchArguments: [String]) -> XCUIApplication {
         let setupApp = XCUIApplication()
-        setupApp.launchEnvironment = mergedLaunchEnvironments
-        setupApp.launchArguments = test.launchArgumentsForSetup?() ?? []
+        setupApp.launchEnvironment = environment
+        setupApp.launchArguments = launchArguments
         setupApp.launch()
         return setupApp
     }
