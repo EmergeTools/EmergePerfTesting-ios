@@ -17,11 +17,11 @@ import XCTest
                 print("🚀 EMERGE: Testing perf test class \(String(describing: perfTestClass))")
                 print("🚀 EMERGE: Running initial setup for \(String(describing: perfTestClass))")
                 
-                let setupApp = makeStartupApplication(forTest: test)
+                let setupApp = makeSetupApplication(forTest: test)
                 test.runInitialSetup(withApp: setupApp)
               
                 print("🚀 EMERGE: Running two iterations for \(String(describing: perfTestClass))")
-                for i in 0..<2 {
+                for i in 0..<3 {
                     print("🚀 EMERGE: Iteration \(i + 1)")
                     let app = makeRunIterationApplication(forTest: test, iteration: i)
                     test.runIteration(withApp: app)
@@ -30,11 +30,9 @@ import XCTest
         }
     }
     
-    private static func makeStartupApplication(forTest test: EMGPerfTest) -> XCUIApplication {
+    private static func makeSetupApplication(forTest test: EMGPerfTest) -> XCUIApplication {
         let emergeLaunchEnvironment = [
             "EMERGE_CLASS_NAME" : String(describing: test.self),
-            "EMERGE_IS_PERFORMANCE_TESTING" : "1",
-            "EMG_RECORD_NETWORK" : "1",
         ]
         let testLaunchEnvironment = test.launchEnvironmentForSetup?() ?? [:]
         let mergedLaunchEnvironments = emergeLaunchEnvironment.merging(testLaunchEnvironment) { (emergeValue, _) in emergeValue }
@@ -44,11 +42,18 @@ import XCTest
     }
     
     private static func makeRunIterationApplication(forTest test: EMGPerfTest, iteration: Int) -> XCUIApplication {
-        let emergeLaunchEnvironment = [
+        var emergeLaunchEnvironment = [
             "EMERGE_CLASS_NAME" : String(describing: test.self),
             "EMERGE_IS_PERFORMANCE_TESTING" : "1",
-            "EMG_RECORD_NETWORK" : "0",
         ]
+        if iteration == 0 {
+            // Don't replay/record for the first iteration
+        } else if iteration == 1 {
+            emergeLaunchEnvironment["EMG_RECORD_NETWORK"] = "1"
+        } else {
+            emergeLaunchEnvironment["EMG_NETWORK_INTERCEPT"] = "1"
+        }
+        
         let testLaunchEnvironment = test.launchEnvironmentForIterations?() ?? [:]
         let mergedLaunchEnvironments = emergeLaunchEnvironment.merging(testLaunchEnvironment) { (emergeValue, _) in emergeValue }
         
