@@ -12,15 +12,32 @@ var hasSwizzled = false
 public extension URLSessionConfiguration {
     
     class func performEmergeSetup() {
+        // Only swizzle if we are recording or replaying network traffic
+        let environment = ProcessInfo.processInfo.environment
+        guard environment["EMG_RECORD_NETWORK"] == "1" || environment["EMG_NETWORK_INTERCEPT"] == "1" else {
+            return
+        }
+        
         URLProtocol.registerClass(EMGURLProtocol.self)
         
-        let defaultImpl = class_getInstanceMethod(
+        let originalSelector = #selector(getter: URLSessionConfiguration.protocolClasses)
+        let originalMethod = class_getInstanceMethod(URLSessionConfiguration.self, originalSelector)
+        let originalImp = method_getImplementation(originalMethod!)
+        
+        let swizzledSelector = #selector(getter: URLSessionConfiguration.swizzledProtocolClasses)
+        let swizzledMethod = class_getInstanceMethod(URLSessionConfiguration.self, swizzledSelector)
+        let swizzledImp = method_getImplementation(swizzledMethod!)
+        
+        class_replaceMethod(
             URLSessionConfiguration.self,
-            #selector(getter: URLSessionConfiguration.protocolClasses))
-        let emergeImpl = class_getInstanceMethod(
+            swizzledSelector,
+            originalImp,
+            method_getTypeEncoding(originalMethod!));
+        class_replaceMethod(
             URLSessionConfiguration.self,
-            #selector(getter: URLSessionConfiguration.swizzledProtocolClasses))
-        method_exchangeImplementations(defaultImpl!, emergeImpl!)
+            originalSelector,
+            swizzledImp,
+            method_getTypeEncoding(swizzledMethod!));
     }
     
     @objc var swizzledProtocolClasses: [AnyObject]? {
