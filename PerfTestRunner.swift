@@ -47,7 +47,7 @@ import XCTest
         let emergeLaunchEnvironment = [
             "EMERGE_CLASS_NAME" : String(describing: test.self),
             "EMERGE_IS_PERFORMANCE_TESTING" : "1",
-            "EMG_RECORD_NETWORK" : "1",
+            "EMG_RECORD_NETWORK" : "0",
         ]
         let testLaunchEnvironment = test.launchEnvironmentForIterations?() ?? [:]
         let mergedLaunchEnvironments = emergeLaunchEnvironment.merging(testLaunchEnvironment) { (emergeValue, _) in emergeValue }
