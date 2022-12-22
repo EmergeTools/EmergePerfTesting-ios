@@ -7,8 +7,6 @@
 
 import Foundation
 
-var hasSwizzled = false
-
 public extension URLSessionConfiguration {
     
     class func performEmergeSetup() {
@@ -42,8 +40,7 @@ public extension URLSessionConfiguration {
     
     @objc var swizzledProtocolClasses: [AnyObject]? {
         var protocolClasses = self.swizzledProtocolClasses ?? []
-        if (!hasSwizzled) {
-            hasSwizzled = true
+        if (!protocolClasses.contains(where: { $0 === EMGURLProtocol.self })) {
             protocolClasses.insert(EMGURLProtocol.self, at: 0)
         }
         return protocolClasses
