@@ -51,7 +51,7 @@ import XCTest
         } else if iteration == 1 {
             emergeLaunchEnvironment["EMG_RECORD_NETWORK"] = "1"
         } else {
-            emergeLaunchEnvironment["EMG_NETWORK_INTERCEPT"] = "1"
+            emergeLaunchEnvironment["EMG_REPLAY_NETWORK"] = "1"
         }
         
         let testLaunchEnvironment = test.launchEnvironmentForIterations?() ?? [:]

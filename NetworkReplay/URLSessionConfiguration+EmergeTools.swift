@@ -14,7 +14,7 @@ public extension URLSessionConfiguration {
     class func performEmergeSetup() {
         // Only swizzle if we are recording or replaying network traffic
         let environment = ProcessInfo.processInfo.environment
-        guard environment["EMG_RECORD_NETWORK"] == "1" || environment["EMG_NETWORK_INTERCEPT"] == "1" else {
+        guard environment["EMG_RECORD_NETWORK"] == "1" || environment["EMG_REPLAY_NETWORK"] == "1" else {
             return
         }
         
