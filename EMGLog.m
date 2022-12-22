@@ -13,4 +13,5 @@ void EMGLog(NSString *format, ...) {
     NSString *input = [[NSString alloc] initWithFormat:format arguments:args];
     va_end(args);
     NSLog(@"### EMG %@ %@", uuid, input);
+    printf("EMERGE: %s \n", [input cStringUsingEncoding:NSUTF8StringEncoding]);
 }
