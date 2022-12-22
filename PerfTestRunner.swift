@@ -25,7 +25,9 @@ import XCTest
                     print("🚀 EMERGE: Iteration \(i + 1)")
                     let app = makeRunIterationApplication(forTest: test, iteration: i)
                     test.runIteration(withApp: app)
+                    print("🚀 EMERGE: Finished iteration")
                 }
+                print("🚀 EMERGE: Finished testing")
             }
         }
     }
