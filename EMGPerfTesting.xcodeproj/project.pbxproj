@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A4387B1C2953FD5200F54459 /* EMGURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = A4387B182953FD5200F54459 /* EMGURLProtocol.m */; };
+		A4387B1D2953FD5200F54459 /* EMGLog.h in Headers */ = {isa = PBXBuildFile; fileRef = A4387B192953FD5200F54459 /* EMGLog.h */; };
+		A4387B1E2953FD5200F54459 /* EMGURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = A4387B1A2953FD5200F54459 /* EMGURLProtocol.h */; };
+		A4387B1F2953FD5200F54459 /* EMGLog.m in Sources */ = {isa = PBXBuildFile; fileRef = A4387B1B2953FD5200F54459 /* EMGLog.m */; };
+		A4387B2E2954B4EF00F54459 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A4387B2C2954B4EF00F54459 /* README.md */; };
+		A4387B2F2954B4EF00F54459 /* INTEGRATION.md in Resources */ = {isa = PBXBuildFile; fileRef = A4387B2D2954B4EF00F54459 /* INTEGRATION.md */; };
+		A4387B312954B76600F54459 /* EMGTuple.m in Sources */ = {isa = PBXBuildFile; fileRef = A4387B302954B76600F54459 /* EMGTuple.m */; };
 		F3962C202881D4B60060C549 /* EMGPerfTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3962C172881D4B60060C549 /* EMGPerfTesting.framework */; };
 		F3962C302881D5410060C549 /* PerfTestRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3962C2F2881D5410060C549 /* PerfTestRunner.swift */; };
 		F3962C322881D6140060C549 /* PerfTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3962C312881D6140060C549 /* PerfTest.swift */; };
@@ -39,6 +46,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A4387B182953FD5200F54459 /* EMGURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMGURLProtocol.m; sourceTree = "<group>"; };
+		A4387B192953FD5200F54459 /* EMGLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMGLog.h; sourceTree = "<group>"; };
+		A4387B1A2953FD5200F54459 /* EMGURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMGURLProtocol.h; sourceTree = "<group>"; };
+		A4387B1B2953FD5200F54459 /* EMGLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMGLog.m; sourceTree = "<group>"; };
+		A4387B2C2954B4EF00F54459 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A4387B2D2954B4EF00F54459 /* INTEGRATION.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = INTEGRATION.md; sourceTree = "<group>"; };
+		A4387B302954B76600F54459 /* EMGTuple.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMGTuple.m; sourceTree = "<group>"; };
+		A4387B322954B77D00F54459 /* EMGTuple.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMGTuple.h; sourceTree = "<group>"; };
 		F3962C172881D4B60060C549 /* EMGPerfTesting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EMGPerfTesting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3962C1F2881D4B60060C549 /* EMGPerfTestingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EMGPerfTestingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3962C2F2881D5410060C549 /* PerfTestRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfTestRunner.swift; sourceTree = "<group>"; };
@@ -69,6 +84,14 @@
 		F3962C0D2881D4B60060C549 = {
 			isa = PBXGroup;
 			children = (
+				A4387B322954B77D00F54459 /* EMGTuple.h */,
+				A4387B302954B76600F54459 /* EMGTuple.m */,
+				A4387B2D2954B4EF00F54459 /* INTEGRATION.md */,
+				A4387B2C2954B4EF00F54459 /* README.md */,
+				A4387B192953FD5200F54459 /* EMGLog.h */,
+				A4387B1B2953FD5200F54459 /* EMGLog.m */,
+				A4387B1A2953FD5200F54459 /* EMGURLProtocol.h */,
+				A4387B182953FD5200F54459 /* EMGURLProtocol.m */,
 				F3962C312881D6140060C549 /* PerfTest.swift */,
 				F3962C2F2881D5410060C549 /* PerfTestRunner.swift */,
 				F3962C182881D4B60060C549 /* Products */,
@@ -100,6 +123,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4387B1E2953FD5200F54459 /* EMGURLProtocol.h in Headers */,
+				A4387B1D2953FD5200F54459 /* EMGLog.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +180,7 @@
 				TargetAttributes = {
 					F3962C162881D4B60060C549 = {
 						CreatedOnToolsVersion = 13.3.1;
-						LastSwiftMigration = 1330;
+						LastSwiftMigration = 1420;
 					};
 					F3962C1E2881D4B60060C549 = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -186,6 +211,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4387B2E2954B4EF00F54459 /* README.md in Resources */,
+				A4387B2F2954B4EF00F54459 /* INTEGRATION.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +231,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3962C322881D6140060C549 /* PerfTest.swift in Sources */,
+				A4387B312954B76600F54459 /* EMGTuple.m in Sources */,
+				A4387B1C2953FD5200F54459 /* EMGURLProtocol.m in Sources */,
+				A4387B1F2953FD5200F54459 /* EMGLog.m in Sources */,
 				F3962C302881D5410060C549 /* PerfTestRunner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

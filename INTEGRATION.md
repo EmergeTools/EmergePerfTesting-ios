@@ -17,3 +17,7 @@ This framework is quite small, so the easiest way to include it is to just copy-
 At the end, it should look approximately like it does in Example/Example.xcworkspace:
 
 <img src="misc/screenshot.png" width="75%">
+
+# Network Swizzling
+
+Our test infrastructure depends on swizzling your application's network request/response logic to cache requests between test iterations. We've included sample code that roughly mimicks how our caching behavior works.

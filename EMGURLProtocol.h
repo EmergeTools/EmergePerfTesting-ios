@@ -6,14 +6,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EMGTuple.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface EMGURLProtocol : NSURLProtocol
 
++ (NSError *)responseNotFoundErrorWithType:(NSString *)type
+                                      cachedValue:(NSString *)cachedValue
+                                givenValue:(NSString *)givenValue;
+
++ (NSArray <NSDictionary *> *)requestMisses;
+
 + (NSString *)folderNameForURL:(NSURL *)url;
 
-+ (BOOL)isRequestEqual:(NSURLRequest *)req1 to:(NSURLRequest *)req2;
++ (BOOL)isCachedRequestEqual:(NSURLRequest *)req1 to:(NSURLRequest *)req2 error:(NSError **)error;
 
 @end
 
