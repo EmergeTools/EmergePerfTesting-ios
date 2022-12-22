@@ -14,6 +14,7 @@
 		A4387B2E2954B4EF00F54459 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A4387B2C2954B4EF00F54459 /* README.md */; };
 		A4387B2F2954B4EF00F54459 /* INTEGRATION.md in Resources */ = {isa = PBXBuildFile; fileRef = A4387B2D2954B4EF00F54459 /* INTEGRATION.md */; };
 		A4387B312954B76600F54459 /* EMGTuple.m in Sources */ = {isa = PBXBuildFile; fileRef = A4387B302954B76600F54459 /* EMGTuple.m */; };
+		A4387B3E2954D31C00F54459 /* URLSessionConfiguration+EmergeTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4387B3D2954D31C00F54459 /* URLSessionConfiguration+EmergeTools.swift */; };
 		F3962C202881D4B60060C549 /* EMGPerfTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3962C172881D4B60060C549 /* EMGPerfTesting.framework */; };
 		F3962C302881D5410060C549 /* PerfTestRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3962C2F2881D5410060C549 /* PerfTestRunner.swift */; };
 		F3962C322881D6140060C549 /* PerfTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3962C312881D6140060C549 /* PerfTest.swift */; };
@@ -54,6 +55,8 @@
 		A4387B2D2954B4EF00F54459 /* INTEGRATION.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = INTEGRATION.md; sourceTree = "<group>"; };
 		A4387B302954B76600F54459 /* EMGTuple.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMGTuple.m; sourceTree = "<group>"; };
 		A4387B322954B77D00F54459 /* EMGTuple.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMGTuple.h; sourceTree = "<group>"; };
+		A4387B3D2954D31C00F54459 /* URLSessionConfiguration+EmergeTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionConfiguration+EmergeTools.swift"; sourceTree = "<group>"; };
+		A4387B3F2954D35300F54459 /* EMGPerfTesting-ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EMGPerfTesting-ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		F3962C172881D4B60060C549 /* EMGPerfTesting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EMGPerfTesting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3962C1F2881D4B60060C549 /* EMGPerfTestingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EMGPerfTestingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3962C2F2881D5410060C549 /* PerfTestRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfTestRunner.swift; sourceTree = "<group>"; };
@@ -81,17 +84,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F3962C0D2881D4B60060C549 = {
+		A4387B412954D47500F54459 /* NetworkReplay */ = {
 			isa = PBXGroup;
 			children = (
+				A4387B3D2954D31C00F54459 /* URLSessionConfiguration+EmergeTools.swift */,
 				A4387B322954B77D00F54459 /* EMGTuple.h */,
 				A4387B302954B76600F54459 /* EMGTuple.m */,
-				A4387B2D2954B4EF00F54459 /* INTEGRATION.md */,
-				A4387B2C2954B4EF00F54459 /* README.md */,
 				A4387B192953FD5200F54459 /* EMGLog.h */,
 				A4387B1B2953FD5200F54459 /* EMGLog.m */,
 				A4387B1A2953FD5200F54459 /* EMGURLProtocol.h */,
 				A4387B182953FD5200F54459 /* EMGURLProtocol.m */,
+			);
+			path = NetworkReplay;
+			sourceTree = "<group>";
+		};
+		F3962C0D2881D4B60060C549 = {
+			isa = PBXGroup;
+			children = (
+				A4387B412954D47500F54459 /* NetworkReplay */,
+				A4387B3F2954D35300F54459 /* EMGPerfTesting-ios-Bridging-Header.h */,
+				A4387B2D2954B4EF00F54459 /* INTEGRATION.md */,
+				A4387B2C2954B4EF00F54459 /* README.md */,
 				F3962C312881D6140060C549 /* PerfTest.swift */,
 				F3962C2F2881D5410060C549 /* PerfTestRunner.swift */,
 				F3962C182881D4B60060C549 /* Products */,
@@ -230,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4387B3E2954D31C00F54459 /* URLSessionConfiguration+EmergeTools.swift in Sources */,
 				F3962C322881D6140060C549 /* PerfTest.swift in Sources */,
 				A4387B312954B76600F54459 /* EMGTuple.m in Sources */,
 				A4387B1C2953FD5200F54459 /* EMGURLProtocol.m in Sources */,
@@ -402,6 +416,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "EMGPerfTesting-ios-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -434,6 +449,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "EMGPerfTesting-ios-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
