@@ -20,7 +20,7 @@ At the end, it should look approximately like it does in Example/Example.xcworks
 
 # Network Swizzling
 
-Our test infrastructure depends on swizzling your application's network request/response logic to cache requests between test iterations. We've included sample code in the `NetworkReplay/` folder that roughly mimicks how our caching behavior works. You can test that this caching works with your application by copying this code into your application and then inserting the following within your app initialization:
+Our test infrastructure depends on swizzling your application's network request/response logic to cache requests between test iterations. We've included sample code in the `NetworkReplay/` folder that roughly mimicks how our caching behavior works. You can test that this caching works by copying this code into your main application and then inserting the following at the start of your app initialization:
 
 ```
 if ProcessInfo.processInfo.environment["EMERGE_IS_PERFORMANCE_TESTING"] == "1" {
