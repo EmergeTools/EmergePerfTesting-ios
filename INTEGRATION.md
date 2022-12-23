@@ -17,3 +17,13 @@ This framework is quite small, so the easiest way to include it is to just copy-
 At the end, it should look approximately like it does in Example/Example.xcworkspace:
 
 <img src="misc/screenshot.png" width="75%">
+
+# Network Swizzling
+
+Our test infrastructure depends on swizzling your application's network request/response logic to cache requests between test iterations. We've included sample code in the `NetworkReplay/` folder that roughly mimicks how our caching behavior works. You can test that this caching works by copying this code into your main application and then inserting the following at the start of your app initialization:
+
+```
+if ProcessInfo.processInfo.environment["EMERGE_IS_PERFORMANCE_TESTING"] == "1" {
+    URLSessionConfiguration.performEmergeSetup()
+}
+```
