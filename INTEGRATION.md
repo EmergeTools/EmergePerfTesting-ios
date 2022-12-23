@@ -20,4 +20,10 @@ At the end, it should look approximately like it does in Example/Example.xcworks
 
 # Network Swizzling
 
-Our test infrastructure depends on swizzling your application's network request/response logic to cache requests between test iterations. We've included sample code in the `NetworkReplay/` folder that roughly mimicks how our caching behavior works. There is a `URLSessionConfiguration.performEmergeSetup()` extension to help set this up.
+Our test infrastructure depends on swizzling your application's network request/response logic to cache requests between test iterations. We've included sample code in the `NetworkReplay/` folder that roughly mimicks how our caching behavior works. You can test that this caching works with your application by inserting the following within your app initialization:
+
+```
+if ProcessInfo.processInfo.environment["EMERGE_IS_PERFORMANCE_TESTING"] == "1" {
+    URLSessionConfiguration.performEmergeSetup()
+}
+```
